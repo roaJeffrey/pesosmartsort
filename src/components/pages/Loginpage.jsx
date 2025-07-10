@@ -1,14 +1,20 @@
 import React from 'react';
 import LoginForm from '../layout/Loginform';
+import BgImage from '../common/Bgimage';
 
-const LoginPage = () => {
+const Loginpage = () => {
   return (
-    <div className="min-w-screen flex items-center justify-center bg-gradient-to-br from-green-500 to-blue-400 p-4">
-      <div className="w-full max-w-md">
-        <LoginForm />
+    <div className="relative min-w-screen h-screen overflow-hidden">
+      <BgImage />
+
+      {/* Login form wrapper */}
+      <div className="relative z-10 flex items-center justify-center w-full h-full px-4">
+        <div className="w-full max-w-md p-6 sm:p-8">
+          <LoginForm />
+        </div>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default Loginpage;
