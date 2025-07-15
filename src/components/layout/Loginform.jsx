@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Icons } from '../common/icons';
+import { Icons } from '../common/Icons';
 import PesoLogo from '../../assets/PESO Logo.png';
 import { account } from '../../appwrite/AppwriteConfig';
 import { useNavigate } from 'react-router-dom';
@@ -33,7 +33,7 @@ const handleSubmit = async (e) => {
     await account.createEmailPasswordSession(formData.email, formData.password);
     const userData = await account.get();
     setUser(userData);
-    navigate('/home');
+    navigate('/dashboard');
   } catch (err) {
     // Always show same error regardless of cause
     setError('Invalid credentials. Please check the email and password.');
