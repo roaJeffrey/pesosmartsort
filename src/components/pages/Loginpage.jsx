@@ -1,4 +1,3 @@
-import React from 'react';
 import LoginForm from '../layout/Loginform';
 import BgImage from '../common/Bgimage';
 

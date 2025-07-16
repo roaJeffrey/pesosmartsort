@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Icons } from '../common/Icons';
 import PesoLogo from '../../assets/PESO Logo.png';
 import { account } from '../../appwrite/AppwriteConfig';
-import { useNavigate } from 'react-router-dom';
+import Button from '../common/Button';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ const handleSubmit = async (e) => {
         {/* Email */}
         <div className="relative mb-4">
           <span className="absolute inset-y-0 left-4 pt-1 flex items-center text-gray-400">
-            <Icons.FaRegUser />
+            <Icons.FaUser />
           </span>
           <input
             id="email"
@@ -103,13 +104,10 @@ const handleSubmit = async (e) => {
           </span>
         </div>
 
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className="w-full mt-5 bg-blue-800 text-white font-semibold rounded-md hover:bg-blue-700 transition"
-        >
+        {/* Login Button */}
+        <Button type="submit" baseStyle='base' variant="primary">
           Login
-        </button>
+        </Button>
       </form>
     </div>
   );

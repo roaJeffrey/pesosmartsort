@@ -1,8 +1,10 @@
-import { FaEye, FaEyeSlash, FaRegUser, FaLock } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaLock, FaChartBar, FaUser, FaMoon } from 'react-icons/fa';
 
 export const Icons = {
   FaEye,
   FaEyeSlash,
-  FaRegUser,
   FaLock,
+  FaChartBar,
+  FaUser,
+  FaMoon
 };

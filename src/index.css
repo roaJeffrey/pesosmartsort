@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @theme {
   /* Breakpoints */
   --breakpoint-*: initial;
@@ -7,9 +9,18 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
 
-  /* Colors */
-  --color-royalblue: #1301cc;
-  --color-deepindigo: #0f0199;
+  /* Primary Colors */
+  --color-royalblue-primary: #1301cc; /* Base button color */
+  --color-deepindigo-primary: #0f0199; /* Alternate button color for Royal Blue */
+  --color-skytint-primary: #e2ecfa; /* Hover color */
+  --color-snowdrift-primary: #f7f9fc; /* Base body color */
+
+  /* Dark Colors */
+  --color-mistywhite-dark: #dcdfe8; /* Alternate color for white */
+  --color-royalblue-dark: #070c2b;
+  --color-deepindigo-dark: #404367;
+  --color-skytint-dark: #1c2238;
+  --color-snowdrift-dark: #1a1c2e;
   
 }
   

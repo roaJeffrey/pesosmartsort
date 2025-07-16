@@ -1,5 +1,3 @@
-// src/components/common/Bgimage.jsx
-import React from 'react';
 import CityHall from '../../assets/City_Hall_of_El_Salvador_City.jpg';
 
 const BgImage = () => {

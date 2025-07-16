@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/Loader.css";
 
 const Bgloading = ({ loading, size = 50, color = "#fff" }) => {
