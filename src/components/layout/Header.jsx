@@ -7,13 +7,16 @@ const Header = () => {
   const[isDark, setDark] = useState(false);
 
   const toggleTheme = () => {
-    const newTheme = !isDark;
-    setDark(newTheme);
-    document.documentElement.setAttribute('data-theme', newTheme ? 'dark' : 'light');
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const newTheme = current === 'dark' ? 'light' : 'dark';
+
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-white dark:bg-skytint-dark shadow flex px-6">
+    <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-white dark:bg-hover-dark shadow flex px-6">
       <div className="flex items-center space-x-4">
         {/* Logo */}
         <img src={PesoLogo} alt="PESO Logo" className="size-13 object-contain" />
@@ -24,8 +27,16 @@ const Header = () => {
         </h2>
 
         {/* Dark and light theme toggle button */}
-        <Button onClick={toggleTheme} baseStyle='circle' variant="secondary" className='absolute right-10'>
-          <Icons.FaMoon className='text-royalblue-primary dark:text-white' />
+        <Button 
+          onClick={(e) => {
+            toggleTheme();
+            e.currentTarget.blur(); // removes focus
+          }} 
+          baseStyle='circle' 
+          variant="secondary" 
+          className='absolute right-10 group'
+        >
+          <Icons.FaMoon className="text-black dark:text-white group-hover:text-base-primary" />
         </Button>
       </div>
     </header>

@@ -1,10 +1,23 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext';
 import { Icons } from '../common/Icons';
 import Button from '../common/Button';
 
-const Sidebar = ({ onLogout }) => {
+const Sidebar = () => {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+    } catch (err) {
+      console.error('Logout failed:', err);
+    }
+  };
+
   return (
-    <aside className="w-63 h-[calc(100vh-4rem)] dark:border-t-1 dark:border-royalblue-dark bg-white dark:bg-skytint-dark text-white p-6 flex flex-col justify-between">
+    <aside className="w-64 h-screen flex-shrink-0 bg-white dark:bg-hover-dark mt-16 p-6 flex flex-col justify-between overflow-hidden">
 
       {/* Navigation buttons */}
       <nav className='navbar'>
@@ -15,8 +28,8 @@ const Sidebar = ({ onLogout }) => {
               className={({ isActive }) =>
                 `block p-3 flex rounded transition duration-300 no-underline ${
                   isActive
-                    ? 'bg-royalblue-primary text-white dark:bg-white dark:text-skytint-dark'
-                    : 'bg-white text-royalblue-primary dark:bg-skytint-dark dark:text-mistywhite-dark hover:bg-skytint-primary hover:text-royalblue-primary dark:hover:bg-snowdrift-dark dark:hover:text-white'
+                    ? 'bg-base-primary text-white dark:bg-white dark:text-hover-dark'
+                    : 'bg-white text-black dark:bg-hover-dark dark:text-altwhite-dark hover:bg-hover-primary hover:text-base-primary dark:hover:bg-snowdrift-dark dark:hover:text-white'
                 }`
               }
             >
@@ -30,8 +43,8 @@ const Sidebar = ({ onLogout }) => {
               className={({ isActive }) =>
                 `block p-3 flex rounded transition duration-300 no-underline ${
                   isActive
-                    ? 'bg-royalblue-primary text-white dark:bg-white dark:text-skytint-dark'
-                    : 'bg-white text-royalblue-primary dark:bg-skytint-dark dark:text-mistywhite-dark  hover:bg-skytint-primary hover:text-royalblue-primary dark:hover:bg-snowdrift-dark dark:hover:text-white'
+                    ? 'bg-base-primary text-white dark:bg-white dark:text-hover-dark'
+                    : 'bg-white text-black dark:bg-hover-dark dark:text-altwhite-dark hover:bg-hover-primary hover:text-base-primary dark:hover:bg-snowdrift-dark dark:hover:text-white'
                 }`
               }
             >
@@ -43,8 +56,9 @@ const Sidebar = ({ onLogout }) => {
       </nav>
 
       {/* Logout Button */}
-      <Button onClick={onLogout} baseStyle='base' variant="outline">
-        Logout
+      <Button onClick={logout} baseStyle='base' variant="outline"className="text-left mb-17 p-3 pl-4 text-black hover:text-white">
+        <Icons.FaPowerOff className="mr-4" />
+          Logout
       </Button>
     </aside>
   );

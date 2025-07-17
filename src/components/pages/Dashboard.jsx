@@ -1,19 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import { handleLogout } from '../common/Logout';
-import Sidebar from '../layout/Sidebar';
 import Header from '../layout/Header';
 
 const Dashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-snowdrift-primary dark:bg-royalblue-dark min-w-screen h-screen overflow-hidden">
+    <div className="min-h-screen bg-body-primary dark:bg-base-dark overflow-y-auto">
       {/* Header */}
       <Header />
 
-      <div className="flex pt-16">
-        {/* Static Sidebar */}
-        <Sidebar onLogout={() => handleLogout(navigate)} />
+      <div className="pt-16 px-4 md:px-6 lg:px-8">
 
         {/* Main Content */}
         <main className="flex-1 p-6">

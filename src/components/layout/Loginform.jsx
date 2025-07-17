@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext';
 import { Icons } from '../common/Icons';
 import PesoLogo from '../../assets/PESO Logo.png';
-import { account } from '../../appwrite/AppwriteConfig';
 import Button from '../common/Button';
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
-  const [user, setUser] = useState(null);
 
   const togglePassword = () => setShowPassword((prev) => !prev);
 
@@ -21,27 +21,23 @@ const LoginForm = () => {
     }));
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
 
-  if (!formData.email || !formData.password) {
-    setError('Invalid credentials. Please check the email and password.');
-    return;
-  }
+    if (!formData.email || !formData.password) {
+      setError('Invalid credentials. Please check the email and password.');
+      return;
+    }
 
-  try {
-    await account.createEmailPasswordSession(formData.email, formData.password);
-    const userData = await account.get();
-    setUser(userData);
-    navigate('/dashboard');
-  } catch (err) {
-    // Always show same error regardless of cause
-    setError('Invalid credentials. Please check the email and password.');
-    console.error('Login failed:', err);
-  }
-};
-
+    try {
+      await login(formData.email, formData.password); // 
+      navigate('/dashboard');
+    } catch (err) {
+      setError('Invalid credentials. Please check the email and password.');
+      console.error('Login failed:', err);
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center pt-0 px-4">
@@ -105,7 +101,7 @@ const handleSubmit = async (e) => {
         </div>
 
         {/* Login Button */}
-        <Button type="submit" baseStyle='base' variant="primary">
+        <Button type="submit" baseStyle='base' variant="primary" className="justify-center">
           Login
         </Button>
       </form>

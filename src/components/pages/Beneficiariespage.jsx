@@ -1,64 +1,132 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { handleLogout } from '../common/Logout';
-import Sidebar from '../layout/Sidebar';
 import Header from '../layout/Header';
+import Table from '../layout/Table';
+import { Icons } from '../common/Icons';
 
 const Beneficiariespage = () => {
   const navigate = useNavigate();
+    const [search, setSearch] = useState("");
+
+  // Define columns (structure only, no data yet)
+  const columns = [
+    { header: "Last Name", accessor: "lastName" },
+    { header: "First Name", accessor: "firstName" },
+    { header: "Middle Name", accessor: "middleName" },
+    { header: "Street and Barangay Name", accessor: "address" },
+    { header: "Contact No.", accessor: "contact" },
+    { header: "Occupation", accessor: "occupation" },
+    {
+      header: "",
+      accessor: () => (
+        <button className="text-gray-500 hover:text-gray-700 mt-1">
+          <span className="text-xl">
+            <Icons.BsThreeDots className="size-5" />
+          </span>
+        </button>
+      ),
+    },
+  ];
+
+  // Empty array for now (you’ll fetch this from Appwrite)
+  const beneficiariesData = [
+    {
+      lastName: "Doe",
+      firstName: "John",
+      middleName: "Bill",
+      address: "Zone 1, Barangay 2",
+      contact: "09111111111",
+      occupation: "Student"
+    },
+    {
+      lastName: "Doe",
+      firstName: "John",
+      middleName: "Rex",
+      address: "Zone 2, Barangay 1",
+      contact: "09111111112",
+      occupation: "Student"
+    },
+    {
+      lastName: "Doe",
+      firstName: "John",
+      middleName: "Son",
+      address: "Zone 1, Barangay 3",
+      contact: "09111111113",
+      occupation: "Student"
+    },
+    {
+      lastName: "Doe",
+      firstName: "John",
+      middleName: "Rex",
+      address: "Zone 2, Barangay 1",
+      contact: "09111111112",
+      occupation: "Student"
+    },
+    {
+      lastName: "Doe",
+      firstName: "John",
+      middleName: "Rex",
+      address: "Zone 2, Barangay 1",
+      contact: "09111111112",
+      occupation: "Student"
+    },
+    {
+      lastName: "Doe",
+      firstName: "John",
+      middleName: "Rex",
+      address: "Zone 2, Barangay 1",
+      contact: "09111111112",
+      occupation: "Student"
+    },
+    {
+      lastName: "Doe",
+      firstName: "John",
+      middleName: "Rex",
+      address: "Zone 2, Barangay 1",
+      contact: "09111111112",
+      occupation: "Student"
+    },
+    {
+      lastName: "Doe",
+      firstName: "John",
+      middleName: "Rex",
+      address: "Zone 2, Barangay 1",
+      contact: "09111111112",
+      occupation: "Student"
+    },
+    {
+      lastName: "Doe",
+      firstName: "John",
+      middleName: "Rex",
+      address: "Zone 2, Barangay 1",
+      contact: "09111111112",
+      occupation: "Student"
+    },
+
+  ];
+
+    const filteredData = beneficiariesData.filter((item) => {
+    const fullText = `${item.firstName} ${item.lastName} ${item.middleName} ${item.address} ${item.contact} ${item.occupation}`.toLowerCase();
+    return fullText.includes(search.toLowerCase());
+  });
 
   return (
-    <div className="bg-snowdrift-primary dark:bg-royalblue-dark min-w-screen h-screen overflow-hidden">
-      {/* Fixed Header */}
+    <div className="min-h-screen bg-body-primary dark:bg-base-dark overflow-y-auto">
       <Header />
 
-      <div className="flex pt-16">
-        {/* Static Sidebar (doesn't collapse) */}
-        <Sidebar onLogout={() => handleLogout(navigate)} />
-
-        {/* Main Content */}
-        <main className="flex-1 p-6">
-          <div className="overflow-x-auto rounded-xl shadow-lg bg-white max-w-6xl mx-auto p-4">
-            <table className="min-w-full text-sm text-left text-gray-700">
-              <thead className="bg-gray-100 uppercase text-xs text-gray-500">
-                <tr>
-                  <th className="px-6 py-3">Name</th>
-                  <th className="px-6 py-3">Email</th>
-                  <th className="px-6 py-3">Status</th>
-                  <th className="px-6 py-3">Role</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4">John Doe</td>
-                  <td className="px-6 py-4">john@example.com</td>
-                  <td className="px-6 py-4">
-                    <span className="inline-block bg-green-100 text-green-600 px-2 py-1 text-xs rounded-full">Active</span>
-                  </td>
-                  <td className="px-6 py-4">Admin</td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4">Jane Smith</td>
-                  <td className="px-6 py-4">jane@example.com</td>
-                  <td className="px-6 py-4">
-                    <span className="inline-block bg-yellow-100 text-yellow-600 px-2 py-1 text-xs rounded-full">Pending</span>
-                  </td>
-                  <td className="px-6 py-4">User</td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="px-6 py-4">Michael Brown</td>
-                  <td className="px-6 py-4">michael@example.com</td>
-                  <td className="px-6 py-4">
-                    <span className="inline-block bg-red-100 text-red-600 px-2 py-1 text-xs rounded-full">Inactive</span>
-                  </td>
-                  <td className="px-6 py-4">Guest</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+      <div className="pt-16 px-4 md:px-6 lg:px-8">
+        <main className="flex-1">
+          <p className="text-3xl font-bold my-4 text-black">Beneficiaries</p>
+            <Table
+              columns={columns} 
+              data={filteredData} 
+              search={search}
+              setSearch={setSearch}
+            />
         </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Beneficiariespage;

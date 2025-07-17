@@ -1,4 +1,7 @@
-import { FaEye, FaEyeSlash, FaLock, FaChartBar, FaUser, FaMoon } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaLock, FaChartBar, FaUser, FaMoon, FaPowerOff } from 'react-icons/fa';
+import { BsThreeDots } from "react-icons/bs";
+import { AiOutlineLoading } from "react-icons/ai";
+import { IoSearch } from "react-icons/io5";
 
 export const Icons = {
   FaEye,
@@ -6,5 +9,9 @@ export const Icons = {
   FaLock,
   FaChartBar,
   FaUser,
-  FaMoon
+  FaMoon,
+  BsThreeDots,
+  AiOutlineLoading,
+  FaPowerOff,
+  IoSearch,
 };

@@ -3,24 +3,19 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
-  /* Breakpoints */
-  --breakpoint-*: initial;
-  --breakpoint-sm: 640px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 1024px;
-
   /* Primary Colors */
-  --color-royalblue-primary: #1301cc; /* Base button color */
-  --color-deepindigo-primary: #0f0199; /* Alternate button color for Royal Blue */
-  --color-skytint-primary: #e2ecfa; /* Hover color */
-  --color-snowdrift-primary: #f7f9fc; /* Base body color */
+  --color-base-primary: #1301cc;
+  --color-base2-primary: #0f0199;
+  --color-hover-primary: #e2ecfa;
+  --color-body-primary: #dfe5ec;
+  --color-table-primary: #f3eff9;
 
   /* Dark Colors */
-  --color-mistywhite-dark: #dcdfe8; /* Alternate color for white */
-  --color-royalblue-dark: #070c2b;
-  --color-deepindigo-dark: #404367;
-  --color-skytint-dark: #1c2238;
-  --color-snowdrift-dark: #1a1c2e;
+  --color-altwhite-dark: #dcdfe8;
+  --color-base-dark: #070c2b;
+  --color-base2-dark: #404367;
+  --color-hover-dark: #1c2238;
+  --color-body-dark: #1a1c2e;
   
 }
   
@@ -39,6 +34,34 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Minimal Scrollbar - thin, hidden until hover */
+.custom-scrollbar {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.custom-scrollbar:hover {
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.4);
+  border-radius: 10px;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 
 /* a {
   font-weight: 500;
@@ -51,10 +74,14 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+html, #root {
+  height: 100%;
 }
 
 h1 {
