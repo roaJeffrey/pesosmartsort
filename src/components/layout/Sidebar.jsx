@@ -17,7 +17,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="w-64 h-screen flex-shrink-0 bg-white dark:bg-hover-dark mt-16 p-6 flex flex-col justify-between overflow-hidden">
+    <aside className="w-64 h-screen flex-shrink-0 bg-white dark:bg-base-dark mt-16 p-6 flex flex-col justify-between overflow-hidden">
 
       {/* Navigation buttons */}
       <nav className='navbar'>
@@ -28,8 +28,8 @@ const Sidebar = () => {
               className={({ isActive }) =>
                 `block p-3 flex rounded transition duration-300 no-underline ${
                   isActive
-                    ? 'bg-base-primary text-white dark:bg-white dark:text-hover-dark'
-                    : 'bg-white text-black dark:bg-hover-dark dark:text-altwhite-dark hover:bg-hover-primary hover:text-base-primary dark:hover:bg-snowdrift-dark dark:hover:text-white'
+                    ? 'bg-base-primary text-white dark:bg-white dark:text-base-dark'
+                    : 'bg-white text-black dark:bg-base-dark dark:text-altwhite-dark hover:bg-hover-primary hover:text-base-primary dark:hover:bg-hover-dark dark:hover:text-white'
                 }`
               }
             >
@@ -44,7 +44,7 @@ const Sidebar = () => {
                 `block p-3 flex rounded transition duration-300 no-underline ${
                   isActive
                     ? 'bg-base-primary text-white dark:bg-white dark:text-hover-dark'
-                    : 'bg-white text-black dark:bg-hover-dark dark:text-altwhite-dark hover:bg-hover-primary hover:text-base-primary dark:hover:bg-snowdrift-dark dark:hover:text-white'
+                    : 'bg-white text-black dark:bg-base-dark dark:text-altwhite-dark hover:bg-hover-primary hover:text-base-primary dark:hover:bg-hover-dark dark:hover:text-white'
                 }`
               }
             >

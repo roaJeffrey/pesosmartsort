@@ -7,15 +7,16 @@
   --color-base-primary: #1301cc;
   --color-base2-primary: #0f0199;
   --color-hover-primary: #e2ecfa;
-  --color-body-primary: #dfe5ec;
+  --color-body-primary: #edf0f5;
   --color-table-primary: #f3eff9;
 
   /* Dark Colors */
-  --color-altwhite-dark: #dcdfe8;
-  --color-base-dark: #070c2b;
-  --color-base2-dark: #404367;
-  --color-hover-dark: #1c2238;
-  --color-body-dark: #1a1c2e;
+  --color-altwhite-dark: #E0E4F1;
+  --color-base-dark: #0A1128;
+  --color-base2-dark: #1B2B5B;
+  --color-hover-dark: #1C2A55;
+  --color-body-dark: #101935;
+  --color-table-header-dark: #162447;
   
 }
   
@@ -45,21 +46,12 @@
   scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
 }
 
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+.custom-scrollbar-dark{
+  scrollbar-color: transparent transparent;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(100, 100, 100, 0.4);
-  border-radius: 10px;
-}
-
-.custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.3);
+.custom-scrollbar-dark:hover{
+  scrollbar-color: #E0E4F1 transparent;
 }
 
 

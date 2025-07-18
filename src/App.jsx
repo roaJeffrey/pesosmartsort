@@ -4,7 +4,7 @@ import { AuthProvider } from './components/auth/AuthContext';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
 import Outline from './components/layout/Outline'; 
 import Dashboard from './components/pages/Dashboard';
-import Beneficiariespage from './components/pages/Beneficiariespage';
+import Beneficiariespage from './components/pages/beneficiaries/Beneficiariespage';
 
 const App = () => {
   return (

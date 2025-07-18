@@ -5,87 +5,54 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-body-primary dark:bg-base-dark overflow-y-auto">
-      {/* Header */}
+    <div className="min-h-screen bg-body-primary dark:bg-body-dark overflow-y-auto custom-scrollbar">
       <Header />
 
       <div className="pt-16 px-4 md:px-6 lg:px-8">
-
-        {/* Main Content */}
         <main className="flex-1 p-6">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">Admin Dashboard</h2>
+          <p className="text-3xl font-bold text-black dark:text-white mb-6">Admin Dashboard</p>
 
-          {/* Stats Cards */}
+          {/* Stat Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-            {["Total Users", "Scans Today", "Total Feedback", "Pending Verifications"].map((label, idx) => (
-              <div key={idx} className="bg-white shadow-md rounded-xl p-6">
-                <p className="text-gray-500 text-sm">{label}</p>
-                <h2 className="text-2xl font-semibold mt-2">--</h2>
-              </div>
-            ))}
+            <StatCard label="Total Users" value="120" />
+            <StatCard label="Boys" value="70" />
+            <StatCard label="Girls" value="50" />
+            <StatCard label="Active Today" value="35" />
+            <StatCard label="Scans Today" value="18" />
+            <StatCard label="Total Feedback" value="24" />
+            <StatCard label="Pending Verifications" value="3" />
+            <StatCard label="Admins" value="1" />
           </div>
 
           {/* Tables Section */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Recent Scans Table */}
-            <div className="bg-white shadow-md rounded-xl p-4">
-              <h2 className="text-lg font-semibold mb-4">Recent Scans</h2>
-              <div className="overflow-x-auto">
-                <table className="min-w-full text-sm text-left text-gray-700">
-                  <thead className="bg-gray-100 uppercase text-xs text-gray-500">
-                    <tr>
-                      <th className="px-4 py-2">User</th>
-                      <th className="px-4 py-2">Leaf Type</th>
-                      <th className="px-4 py-2">Result</th>
-                      <th className="px-4 py-2">Date</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {[...Array(3)].map((_, i) => (
-                      <tr key={i} className="hover:bg-gray-50">
-                        <td className="px-4 py-3">---</td>
-                        <td className="px-4 py-3">---</td>
-                        <td className="px-4 py-3">---</td>
-                        <td className="px-4 py-3">---</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <DataTable
+              title="Recent Scans"
+              columns={['User', 'Leaf Type', 'Result', 'Date']}
+              rows={[
+                ['Juan Dela Cruz', 'Arabica', 'Healthy', '2025-07-18'],
+                ['Maria Clara', 'Robusta', 'Rust Detected', '2025-07-17'],
+                ['Pedro Penduko', 'Excelsa', 'Healthy', '2025-07-17'],
+              ]}
+            />
 
-            {/* Feedback Table */}
-            <div className="bg-white shadow-md rounded-xl p-4">
-              <h2 className="text-lg font-semibold mb-4">Latest Feedback</h2>
-              <div className="overflow-x-auto">
-                <table className="min-w-full text-sm text-left text-gray-700">
-                  <thead className="bg-gray-100 uppercase text-xs text-gray-500">
-                    <tr>
-                      <th className="px-4 py-2">User</th>
-                      <th className="px-4 py-2">Message</th>
-                      <th className="px-4 py-2">Date</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {[...Array(3)].map((_, i) => (
-                      <tr key={i} className="hover:bg-gray-50">
-                        <td className="px-4 py-3">---</td>
-                        <td className="px-4 py-3 truncate max-w-xs">---</td>
-                        <td className="px-4 py-3">---</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            <DataTable
+              title="Latest Feedback"
+              columns={['User', 'Message', 'Date']}
+              rows={[
+                ['Maria Clara', 'Great app, very helpful!', '2025-07-18'],
+                ['Juan Dela Cruz', 'More info on diseases please.', '2025-07-17'],
+                ['Carla Santos', 'The results were accurate.', '2025-07-16'],
+              ]}
+            />
           </div>
 
-          {/* Users Table */}
-          <div className="bg-white shadow-md rounded-xl p-4 mt-10">
-            <h2 className="text-lg font-semibold mb-4">Registered Users</h2>
-            <div className="overflow-x-auto">
-              <table className="min-w-full text-sm text-left text-gray-700">
-                <thead className="bg-gray-100 uppercase text-xs text-gray-500">
+          {/* Registered Users */}
+          <div className="bg-white dark:bg-base-dark shadow-md rounded-xl p-4 mt-10">
+            <h2 className="text-lg font-semibold mb-4 text-black dark:text-white">Registered Users</h2>
+            <div className="overflow-x-auto custom-scrollbar">
+              <table className="min-w-full text-sm text-left text-black dark:text-gray-300">
+                <thead className="bg-gray-100 dark:bg-gray-800 uppercase text-xs text-black dark:text-gray-400">
                   <tr>
                     <th className="px-4 py-2">Name</th>
                     <th className="px-4 py-2">Email</th>
@@ -93,15 +60,27 @@ const Dashboard = () => {
                     <th className="px-4 py-2">Role</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
-                  {[...Array(5)].map((_, i) => (
-                    <tr key={i} className="hover:bg-gray-50">
-                      <td className="px-4 py-3">---</td>
-                      <td className="px-4 py-3">---</td>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  {[
+                    ['Juan Dela Cruz', 'juan@email.com', 'Active', 'Employee'],
+                    ['Maria Clara', 'maria@email.com', 'Active', 'Employee'],
+                    ['Carla Santos', 'carla@email.com', 'Inactive', 'Employee'],
+                    ['Pedro Penduko', 'pedro@email.com', 'Active', 'Employee'],
+                    ['Admin User', 'admin@email.com', 'Active', 'Admin'],
+                  ].map(([name, email, status, role], i) => (
+                    <tr key={i} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                      <td className="px-4 py-3">{name}</td>
+                      <td className="px-4 py-3">{email}</td>
                       <td className="px-4 py-3">
-                        <span className="inline-block bg-gray-200 text-gray-500 text-xs px-2 py-1 rounded-full">---</span>
+                        <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
+                          status === 'Active'
+                            ? 'bg-green-100 text-green-600 dark:bg-green-800 dark:text-green-300'
+                            : 'bg-red-100 text-red-600 dark:bg-red-800 dark:text-red-300'
+                        }`}>
+                          {status}
+                        </span>
                       </td>
-                      <td className="px-4 py-3">---</td>
+                      <td className="px-4 py-3">{role}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -113,5 +92,40 @@ const Dashboard = () => {
     </div>
   );
 };
+
+// Stat Card Component
+const StatCard = ({ label, value }) => (
+  <div className="bg-white dark:bg-base-dark shadow-md rounded-xl p-6 dark:bg-base-dark">
+    <p className="text-black dark:text-gray-400 text-sm">{label}</p>
+    <h2 className="text-2xl font-semibold mt-2 text-black dark:text-white">{value}</h2>
+  </div>
+);
+
+// Reusable Table Component
+const DataTable = ({ title, columns, rows }) => (
+  <div className="bg-white dark:bg-base-dark shadow-md rounded-xl p-4">
+    <h2 className="text-lg font-semibold mb-4 text-black dark:text-white">{title}</h2>
+    <div className="overflow-x-auto custom-scrollbar">
+      <table className="min-w-full text-sm text-left text-black dark:text-gray-300">
+        <thead className="bg-gray-100 dark:bg-gray-800 uppercase text-xs text-black dark:text-gray-400">
+          <tr>
+            {columns.map((col, idx) => (
+              <th key={idx} className="px-4 py-2">{col}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+          {rows.map((row, i) => (
+            <tr key={i} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+              {row.map((cell, j) => (
+                <td key={j} className="px-4 py-3 truncate max-w-xs">{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+);
 
 export default Dashboard;

@@ -16,7 +16,7 @@ const Header = () => {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-white dark:bg-hover-dark shadow flex px-6">
+    <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-white dark:bg-base-dark shadow flex px-6">
       <div className="flex items-center space-x-4">
         {/* Logo */}
         <img src={PesoLogo} alt="PESO Logo" className="size-13 object-contain" />
@@ -36,7 +36,7 @@ const Header = () => {
           variant="secondary" 
           className='absolute right-10 group'
         >
-          <Icons.FaMoon className="text-black dark:text-white group-hover:text-base-primary" />
+          <Icons.FaMoon className="text-black group-hover:text-base-primary dark:text-white dark:hover:text-base-dark dark:group-hover:text-base-dark" />
         </Button>
       </div>
     </header>
